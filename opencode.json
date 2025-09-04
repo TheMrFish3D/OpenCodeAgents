@@ -1,0 +1,107 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "gpt-oss-120b": {
+      "type": "remote",
+      "url": "http://your-local-model-server/gpt-oss-120b",
+      "enabled": true
+    },
+    "gpt-oss-20b": {
+      "type": "remote",
+      "url": "http://your-local-model-server/gpt-oss-20b",
+      "enabled": true
+    }
+  },
+  "agent": {
+    "orchestrator": {
+      "description": "Orchestrates a team of AI agents to complete a given task.",
+      "mode": "primary",
+      "model": "mcp/gpt-oss-120b",
+      "prompt": "{file:./prompts/orchestrator_prompt.txt}",
+      "tools": {
+        "bash": false,
+        "edit": false,
+        "write": false,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "webfetch": true
+      }
+    },
+    "architect": {
+      "description": "Designs the structure of the software project.",
+      "mode": "subagent",
+      "model": "mcp/gpt-oss-120b",
+      "prompt": "{file:./prompts/architect_prompt.txt}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": true,
+        "edit": false,
+        "bash": false,
+        "webfetch": false
+      }
+    },
+    "coder": {
+      "description": "Writes clean, efficient, and maintainable code.",
+      "mode": "subagent",
+      "model": "mcp/gpt-oss-20b",
+      "prompt": "{file:./prompts/coder_prompt.txt}",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "bash": false,
+        "webfetch": false
+      }
+    },
+    "tester": {
+      "description": "Writes comprehensive tests for the code.",
+      "mode": "subagent",
+      "model": "mcp/gpt-oss-20b",
+      "prompt": "{file:./prompts/tester_prompt.txt}",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "bash": true,
+        "webfetch": false
+      }
+    },
+    "reviewer": {
+      "description": "Reviews code for quality, correctness, and best practices.",
+      "mode": "subagent",
+      "model": "mcp/gpt-oss-120b",
+      "prompt": "{file:./prompts/reviewer_prompt.txt}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "webfetch": false
+      }
+    },
+    "researcher": {
+      "description": "Finds information on the web to help the other agents.",
+      "mode": "subagent",
+      "model": "mcp/gpt-oss-20b",
+      "prompt": "{file:./prompts/researcher_prompt.txt}",
+      "tools": {
+        "webfetch": true,
+        "write": true,
+        "read": false,
+        "grep": false,
+        "glob": false,
+        "edit": false,
+        "bash": false
+      }
+    }
+  }
+}
