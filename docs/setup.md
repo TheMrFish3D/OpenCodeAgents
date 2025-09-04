@@ -29,8 +29,14 @@ Open the `opencode.json` file and find the `mcp` section:
 },
 ```
 
-Replace `"http://your-local-model-server/gpt-oss-120b"` and `"http://your-local-model-server/gpt-oss-20b"` with the correct URLs for your models.
 
+> **Where to obtain models and valid alternatives:**
+>
+> - If you do not already have local servers running `gpt-oss-120b` or `gpt-oss-20b`, you can:
+>   - Check the [OpenCode Model Server Guide](https://github.com/opencode-ai/model-server-guide) for instructions on setting up compatible model servers.
+>   - Use open-source alternatives such as [OpenChat](https://github.com/imoneoi/openchat), [FastChat](https://github.com/lm-sys/FastChat), or [vLLM](https://github.com/vllm-project/vllm) to host models like Llama, Mistral, or other supported LLMs.
+>   - Refer to `docs/recommended_mcp_servers.md` for a curated list of recommended MCP/model servers and their setup instructions.
+> - Ensure that the URLs you provide point to a running server that implements the required API for your chosen model.
 ## 3. (Optional) Install Recommended MCP Servers
 
 For enhanced functionality, you can install one or more of the recommended MCP servers listed in `docs/recommended_mcp_servers.md`. The installation and configuration instructions for each server can be found in their respective documentation.
